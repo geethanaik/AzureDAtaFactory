@@ -1,5 +1,5 @@
 {
-	"name": "DS_OrdersFile",
+	"name": "DS_OrdersSourceFile",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "LS_SourceFile",
