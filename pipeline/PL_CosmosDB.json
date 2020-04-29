@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy File data",
+				"name": "PL_CopyFile",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -16,8 +16,14 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "AzureSqlSource",
-						"queryTimeout": "02:00:00"
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
 					},
 					"sink": {
 						"type": "CosmosDbMongoDbApiSink",
@@ -28,7 +34,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "DS_Order_sql",
+						"referenceName": "DS_OrdersSourceFile",
 						"type": "DatasetReference"
 					}
 				],

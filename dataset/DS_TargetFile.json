@@ -1,0 +1,21 @@
+{
+	"name": "DS_TargetFile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_DestinationFolder",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "targetfiles"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
