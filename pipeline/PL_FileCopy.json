@@ -1,5 +1,5 @@
 {
-	"name": "PL_CosmosDB",
+	"name": "PL_FileCopy",
 	"properties": {
 		"activities": [
 			{
@@ -9,7 +9,7 @@
 				"policy": {
 					"timeout": "0.00:01:00",
 					"retry": 0,
-					"retryIntervalInSeconds": 10,
+					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
@@ -26,11 +26,82 @@
 						}
 					},
 					"sink": {
-						"type": "CosmosDbMongoDbApiSink",
-						"writeBatchTimeout": "00:01:00",
-						"writeBehavior": "insert"
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
 					},
-					"enableStaging": false
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 1
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 1
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 2
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 2
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 3
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 3
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 4
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 4
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 5
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 5
+								}
+							},
+							{
+								"source": {
+									"type": "String",
+									"ordinal": 6
+								},
+								"sink": {
+									"type": "String",
+									"ordinal": 6
+								}
+							}
+						]
+					}
 				},
 				"inputs": [
 					{
@@ -40,7 +111,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_CosmosDB",
+						"referenceName": "DS_TargetFile",
 						"type": "DatasetReference"
 					}
 				]
